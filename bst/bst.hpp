@@ -159,8 +159,21 @@ class bst{
                 print_node_r(node->right,h-1,spaces);
             }
         }
+    
+        void tree_cut_down(Node * temp){
+            if(!temp)
+                return;
+            tree_cut_down(temp->left);
+            tree_cut_down(temp->right);
+            delete temp;
+        }
     public:
         bst():root(nullptr){}
+
+        ~bst(){
+            tree_cut_down(root);
+            root = nullptr;
+        }
 
         template <typename TT>
         Node * add(TT&& val){
@@ -172,11 +185,7 @@ class bst{
             remove(std::forward<TT>(val),root);
         }
 
-        Node * f(T val){
-            return find(val,root);
-        }
-
-        void print_tree(){
+        void print_tree(){ //test implementation ,made it for fun :)
             std::size_t h = height(root);
             std::size_t max_spaces = std::pow(2,h)*2 + 1;
             for(int i = h;i>=0;--i){
