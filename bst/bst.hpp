@@ -176,7 +176,7 @@ class bst{
         }
 
         template <typename TT>
-        Node * add(TT&& val){
+        void add(TT&& val){
             return add(std::forward<TT>(val),root);
         }
 
