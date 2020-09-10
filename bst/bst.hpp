@@ -71,7 +71,7 @@ class bst{
         Node * find_big(Node * temp){
             if(!temp->right)
                 return temp;
-            return find_low(temp->right);
+            return find_big(temp->right);
         }
         
         template <typename TT>
@@ -131,7 +131,7 @@ class bst{
 
         std::size_t depth(Node * node,Node * temp){
             if(node == temp)
-                return 0;
+                return 1;
             if(temp->data > node->data)
                 return depth(node->right,temp) + 1;
             if(temp->data < node->data)
